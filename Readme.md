@@ -1,419 +1,149 @@
-# CandiSight: 2-Day Hackathon Edition
-## AI-Powered Candidate Screening & Resume Evaluation System
+# CandiSight – AI‑Powered Hiring & ATS System
 
-An intelligent recruitment platform that uses AI and NLP to automate resume screening and generate ATS compatibility scores.
+## Project Overview
 
----
+CandiSight is an AI-driven hiring assistance platform designed to help HR professionals and recruiters quickly evaluate job applicants. The system analyzes candidate resumes against job descriptions to predict whether a candidate is a good fit and generates an ATS-style compatibility score. By combining Natural Language Processing (NLP) and Machine Learning, CandiSight reduces manual resume screening time, improves consistency, and supports data-driven hiring decisions.
 
-## 🎯 Project Objective
-Build an MVP that evaluates candidate resumes against job descriptions, predicts fit, and generates an ATS score (0-100) based on skill matching and relevance.
+The project is built as a hackathon-ready Minimum Viable Product (MVP) with a clear end-to-end pipeline: text preprocessing, feature extraction, similarity analysis, machine learning classification, and result visualization through a user-friendly interface.
 
 ---
 
-## MVP Features (2-Day Hackathon)
+## Problem Statement
 
-### 1. Resume Parsing & Analysis (CORE)
-- Basic text extraction from PDF/TXT files
-- Automated skill extraction
-- Contact information parsing
+Recruiters often receive hundreds of resumes for a single job role. Manual screening is time-consuming, subjective, and error-prone. Traditional Applicant Tracking Systems (ATS) are often rigid and lack transparency.
 
-### 2. Job Description Processing (CORE)
-- Keyword/skill extraction from job description
-- Simple requirement identification
+CandiSight addresses this problem by:
 
-### 3. Matching & Scoring Engine (CORE)
-- Keyword-based skill matching
-- Simple ATS compatibility score (0-100)
-- Match percentage calculation
-
-### 4. User Interface (CORE)
-- Single-page resume upload
-- Job description input form
-- Results display with score breakdown
-- Match/mismatch skills visualization
+* Automatically comparing resumes with job descriptions
+* Predicting candidate-job fit (Yes/No)
+* Providing an explainable ATS compatibility score
 
 ---
 
-## Simplified Technical Architecture
+## Solution Description
 
-```
-BACKEND (Python/Flask)
+CandiSight uses NLP techniques to convert unstructured resume and job description text into numerical features. A machine learning model then predicts candidate suitability, while a rule-based scoring mechanism computes an ATS score based on skill and keyword overlap.
 
-├── API Endpoints
-│   ├── POST /upload-resume
-│   ├── POST /evaluate
-│   └── GET /results/:id
-├── Core Processing
-│   ├── Resume Parser (PyPDF2/python-docx)
-│   ├── Job Description Processor
-│   └── Scoring Engine
-└── In-Memory Data Store (JSON/SQLite)
+The system is designed to be:
 
-FRONTEND (HTML/CSS/JavaScript)
-
-├── Upload Form
-├── Results Display
-└── Score Visualization
-```
+* Fast and lightweight
+* Explainable to non-technical users
+* Easy to integrate with web applications
 
 ---
 
-## Technology Stack (Hackathon)
+## Key Features
 
-### Backend (Pick One)
-**Python + Flask** (Recommended for hackathon)
-  - PyPDF2 / python-docx for file processing
-  - NLTK for basic NLP
-  - SQLite for data storage
-  - Flask-CORS for API
-
-**Node.js + Express** (Alternative)
-  - pdfparse / node-docx
-  - Natural.js for NLP
-  - SQLite3 or JSON file storage
-
-### Frontend
-**HTML5 + CSS3 + Vanilla JavaScript**
-  - Bootstrap or Tailwind CSS for styling
-  - Fetch API for backend communication
-  - Chart.js for score visualization
-
-**OR**
-
-**React** (if team familiar)
-  - Simple create-react-app
-  - Axios for API calls
-
-### Data Storage
-- **SQLite** (file-based, no setup needed)
-- **JSON files** (simplest option)
+* Resume and Job Description text analysis
+* Job fit prediction using Machine Learning (classification)
+* ATS compatibility score (0–100)
+* Skill and keyword matching visualization
+* Modular ML pipeline for easy extension
 
 ---
 
-## 2-Day Hackathon Schedule
+## What to Prepare (Hackathon Focus)
 
-### DAY 1 (8 hours)
+### 1. Data Preparation
 
-**Morning - Planning & Setup (3 hours: 9 AM - 12 PM)**
-- [ ] Team formation and role assignment (15 min)
-- [ ] Requirements finalization (30 min)
-- [ ] Technology stack decision (15 min)
-- [ ] Environment setup and dependencies (45 min)
-- [ ] Architecture & API design (45 min)
-- [ ] Break (15 min)
+* Resume text dataset (from Kaggle or public sources)
+* Job description dataset
+* Predefined skill dictionary (e.g., Python, ML, SQL, React)
+* Synthetic label generation using skill overlap logic
 
-**Afternoon - Backend Development (5 hours: 1 PM - 6 PM)**
-- [ ] Resume parser implementation (90 min)
-- [ ] Job description processor (60 min)
-- [ ] API endpoints setup (45 min)
-- [ ] Basic scoring logic (45 min)
-- [ ] Testing and debugging (15 min)
+### 2. Machine Learning Pipeline
 
-### DAY 2 (8 hours)
+* Text cleaning: lowercase, punctuation removal, stopword removal, lemmatization
+* Feature extraction using TF-IDF Vectorization
+* Similarity computation using Cosine Similarity
+* Classification model: Logistic Regression (primary)
+* Evaluation using F1-score and confusion matrix
 
-**Morning - Integration & Frontend (4 hours: 9 AM - 1 PM)**
-- [ ] Frontend setup and structure (60 min)
-- [ ] Resume upload form (45 min)
-- [ ] Job description input form (30 min)
-- [ ] Frontend-backend integration (45 min)
-- [ ] Bug fixes and testing (20 min)
+### 3. ATS Scoring Logic
 
-**Afternoon - Polish & Demo Prep (4 hours: 2 PM - 6 PM)**
-- [ ] Results display UI (45 min)
-- [ ] Score visualization (45 min)
-- [ ] End-to-end testing (45 min)
-- [ ] Sample data preparation (15 min)
-- [ ] Demo rehearsal and documentation (30 min)
-- [ ] Final testing and optimizations (20 min)
+* Skill match percentage
+* Keyword overlap percentage
+* Experience alignment (basic heuristic)
+* Weighted scoring to produce final ATS score
+
+### 4. Model Deployment Assets
+
+* Trained ML model saved as .pkl file
+* TF-IDF vectorizer saved as .pkl file
+* Single prediction function for backend integration
 
 ---
 
-## Core Modules (Hackathon Version)
+## System Architecture
 
-### 1. Resume Parser
-- Extract text from PDF/TXT
-- Identify skills section
-- Extract candidate name, email
-
-### 2. Job Description Processor
-- Extract text
-- Parse required skills
-- Parse job title and level
-
-### 3. Matching Engine
-- Compare skills (case-insensitive keyword matching)
-- Calculate match percentage
-- Identify matched and missing skills
-
-### 4. Scoring Engine
-- Skill match score (0-100)
-- Experience relevance score
-- Overall ATS compatibility score
-- Generate match summary
+1. User uploads resume and job description
+2. Backend preprocesses text data
+3. TF-IDF vectorizer transforms text into features
+4. ML model predicts job fit
+5. ATS score is calculated using rule-based logic
+6. Results are displayed on the frontend
 
 ---
 
-## Hackathon Deliverables
+## Technology Stack
 
-### Working Software
-- [ ] Backend API (Flask/Express)
-- [ ] Frontend web application (HTML/React)
-- [ ] Resume upload and processing
-- [ ] Job description input
-- [ ] Scoring and results display
-
-### Documentation
-- [ ] README with setup instructions
-- [ ] API endpoint documentation
-- [ ] How to use guide
-- [ ] Code comments
-
-### Demo Materials
-- [ ] Sample resumes and job descriptions
-- [ ] Presentation slides
-- [ ] Video demo (optional)
-
-### Code Repository
-- [ ] GitHub repository with clean code
-- [ ] Well-organized folder structure
-- [ ] .gitignore and requirements.txt/.package.json
+* Programming Language: Python
+* Libraries: Pandas, NumPy, Scikit-learn, NLTK / spaCy
+* ML Techniques: TF-IDF, Logistic Regression, Cosine Similarity
+* Backend: Flask / FastAPI (integration-ready)
+* Frontend: HTML, CSS, JavaScript (or any modern framework)
 
 ---
 
-## Simplified Data Models
+## Dataset Strategy
 
-### Resume Data
-```json
-{
-  "id": "unique_id",
-  "fileName": "resume.pdf",
-  "candidateName": "John Doe",
-  "email": "john@example.com",
-  "extractedSkills": ["Python", "JavaScript", "React"],
-  "rawText": "..."
-}
-```
+Due to the lack of publicly available labeled hiring datasets, CandiSight uses a hybrid data strategy:
 
-### Job Description Data
-```json
-{
-  "id": "job_id",
-  "jobTitle": "Senior Developer",
-  "description": "...",
-  "requiredSkills": ["Python", "PostgreSQL", "React"]
-}
-```
+* Real-world resume and job description text
+* Synthetic label generation based on skill overlap thresholds
+* Resume–JD pairing to expand dataset size
 
-### Evaluation Result
-```json
-{
-  "id": "result_id",
-  "resumeId": "resume_id",
-  "jobId": "job_id",
-  "overallScore": 78,
-  "skillMatchPercentage": 75,
-  "matchedSkills": ["Python", "React"],
-  "missingSkills": ["PostgreSQL"],
-  "recommendation": "GOOD_FIT"
-}
-```
+This approach mirrors real ATS logic and ensures explainability.
 
 ---
 
-## Hackathon Success Criteria
+## Evaluation Metrics
 
-### Must Have (MVP)
-- ✅ Functional resume upload and parsing
-- ✅ Job description input
-- ✅ Working matching algorithm
-- ✅ Score calculation (0-100)
-- ✅ Results display with matched/missing skills
-- ✅ Live demo ready
+* Classification: Accuracy, Precision, Recall, F1-score
+* ATS Score: Percentage-based interpretability
 
-### Nice to Have
-- 📊 Visual score charts
-- 📝 PDF report generation
-- ⚡ Performance optimization
-- 🎨 Polished UI design
-
-### Hackathon Goals
-- Resume processing time: < 5 seconds
-- Match accuracy demonstration: ✓ Works correctly
-- Clean, maintainable code
-- Good presentation and demo
+F1-score is prioritized due to class imbalance in hiring scenarios.
 
 ---
 
-## Hackathon Challenges & Solutions
+## Future Enhancements
 
-### Common Issues & Fixes
-
-1. **Resume parsing fails on certain PDFs**
-   - Solution: Use simple text extraction, test with various formats early
-
-2. **Skill matching too strict/lenient**
-   - Solution: Use case-insensitive matching, fuzzy string matching (fuzzywuzzy)
-
-3. **Frontend-backend integration issues**
-   - Solution: Start simple with JSON endpoints, use Postman to test
-
-4. **Time running out**
-   - Priority: Get basic version working, then add features
-   - Skip: Database persistence (use JSON files), authentication, advanced UI
-
-5. **Dependencies/setup issues**
-   - Solution: Use simple libraries, pre-install everything, have backup tools
+* Semantic embeddings (BERT/Sentence Transformers)
+* Bias detection and fairness metrics
+* Multi-role job matching
+* Resume parsing into structured fields
+* Dashboard analytics for recruiters
 
 ---
 
-## Team Structure (Hackathon)
+## Team Roles (Example)
 
-### Optimal Team: 3-4 People
-- **Backend Developer (1-2)** - Parse, match, score, API
-- **Frontend Developer (1-2)** - UI, forms, results display
-- **Team Lead/Coordinator** - Planning, demos, documentation
-
-### Flexible Assignments
-- Single person: Can handle both backend and simple frontend
-- 4 people: One dedicated to testing and documentation
+* AI/ML Engineer: Data preprocessing, model training, evaluation, and model export
+* Backend Developer: API development and ML integration
+* Frontend Developer: UI/UX and result visualization
+* System Integrator: End-to-end testing and deployment support
 
 ---
 
-## Quick Start Guide
+## Hackathon Readiness
 
-### Before the Hackathon
-1. Install Python/Node.js
-2. Set up Git repository
-3. Prepare sample resumes and job descriptions
-4. Test file upload libraries
-5. Decide on simple database (SQLite or JSON)
-
-### First 30 Minutes
-1. Clone/setup repo structure
-2. Install dependencies (Flask, PyPDF2, etc.)
-3. Create basic API skeleton
-4. Create simple HTML form
-5. Test basic file upload
-
-### Development Priority
-1. **Hour 1-3:** Resume parser + Job processor (backend)
-2. **Hour 4-5:** Matching algorithm + Scoring
-3. **Hour 6-8:** API endpoints + Frontend form
-4. **Hour 9-14:** Frontend results display + Integration
-5. **Hour 15-16:** Testing + Polish + Demo prep
+* Scope-limited and achievable in 2 days of coding
+* Fully explainable ML approach
+* Real-world impact and scalability
+* Clear demo flow for presentation
 
 ---
 
-## Final Checklist
-- [ ] Code pushed to GitHub
-- [ ] README with setup instructions
-- [ ] At least 1 working demo example
-- [ ] Presentation ready
-- [ ] Team can explain every feature
+## Conclusion
 
----
-
-## Project Repository Structure
-
-```
-CandiSight-Hackathon/
-├── backend/
-│   ├── app.py (or main.js for Node)
-│   ├── resume_parser.py
-│   ├── job_processor.py
-│   ├── scoring_engine.py
-│   ├── requirements.txt
-│   └── sample_data/
-├── frontend/
-│   ├── index.html
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── script.js
-│   └── assets/
-├── data/
-│   ├── resumes/
-│   └── jobs/
-├── .gitignore
-└── README.md
-```
-
----
-
-## Sample API Endpoints
-
-### 1. Upload Resume
-```
-POST /api/upload-resume
-Content-Type: multipart/form-data
-
-Response: 
-{
-  "success": true,
-  "resumeId": "resume_123",
-  "candidateName": "John Doe",
-  "skills": ["Python", "JavaScript"]
-}
-```
-
-### 2. Create Job Description
-```
-POST /api/create-job
-Content-Type: application/json
-
-{
-  "jobTitle": "Senior Developer",
-  "description": "...",
-  "requiredSkills": ["Python", "React"]
-}
-
-Response:
-{
-  "success": true,
-  "jobId": "job_456"
-}
-```
-
-### 3. Evaluate Candidate
-```
-POST /api/evaluate
-Content-Type: application/json
-
-{
-  "resumeId": "resume_123",
-  "jobId": "job_456"
-}
-
-Response:
-{
-  "overallScore": 78,
-  "skillMatchPercentage": 75,
-  "matchedSkills": ["Python"],
-  "missingSkills": ["React"],
-  "recommendation": "GOOD_FIT"
-}
-```
-
----
-
-## Tips for Hackathon Success
-
-✨ **Do's:**
-- Start with core features (parsing, matching, scoring)
-- Use existing libraries (don't reinvent the wheel)
-- Test early and often
-- Keep UI simple but functional
-- Document as you code
-- Save frequently to Git
-
-❌ **Don'ts:**
-- Over-engineer the solution
-- Try to perfect UI design
-- Implement authentication
-- Build for scale (one-person use is fine)
-- Spend time on deployment
-- Ignore error handling
-
----
-
-**Good luck with your hackathon! 🚀**
+CandiSight demonstrates how practical machine learning and NLP can be applied to solve real hiring challenges. The project emphasizes explainability, efficiency, and usability, making it suitable for hackathons as well as real-world extensions.
