@@ -1,428 +1,419 @@
-# CandiSight: AI-Powered Candidate Screening & Resume Evaluation System
+# CandiSight: 2-Day Hackathon Edition
+## AI-Powered Candidate Screening & Resume Evaluation System
 
-## Project Overview
-CandiSight is an intelligent recruitment platform that leverages artificial intelligence and natural language processing to automate candidate screening and resume evaluation. The system analyzes resumes against job descriptions to predict candidate fit and generate ATS (Applicant Tracking System) compatibility scores.
-
-**Objectives:**
-- Automate resume screening process
-- Improve hiring consistency and efficiency
-- Reduce manual effort in candidate evaluation
-- Enable data-driven recruitment decisions
-- Provide accurate skill-to-job matching
+An intelligent recruitment platform that uses AI and NLP to automate resume screening and generate ATS compatibility scores.
 
 ---
 
-## Core Features
-
-### 1. Resume Parsing & Analysis
-- Automated resume extraction and parsing
-- Support for multiple file formats (PDF, DOCX, TXT)
-- Data normalization and structure extraction
-- Contact information, work experience, education, and skills extraction
-
-### 2. Job Description Processing
-- Job description intake and parsing
-- Key skill and requirement extraction
-- Experience level and qualification identification
-- Role-specific keyword identification
-
-### 3. AI-Powered Matching Engine
-- Natural Language Processing (NLP) for semantic understanding
-- Skill matching and alignment algorithms
-- Experience requirement evaluation
-- Qualification comparison
-
-### 4. ATS Compatibility Scoring
-- Keyword relevance scoring
-- Skill match percentage calculation
-- Experience alignment scoring
-- Overall candidate fit prediction
-- Score breakdown and reasoning
-
-### 5. Candidate Ranking & Filtering
-- Rank candidates by match percentage
-- Filter candidates by minimum criteria
-- Shortlist management
-- Batch candidate evaluation
-
-### 6. Reporting & Analytics
-- Detailed evaluation reports
-- Visual score breakdowns
-- Candidate comparison reports
-- Screening pipeline analytics
-
-### 7. User Interface
-- Dashboard for HR professionals
-- Resume upload interface
-- Job description submission
-- Results visualization
-- Batch processing capabilities
+## 🎯 Project Objective
+Build an MVP that evaluates candidate resumes against job descriptions, predicts fit, and generates an ATS score (0-100) based on skill matching and relevance.
 
 ---
 
-## Technical Architecture
+## MVP Features (2-Day Hackathon)
 
-### Backend Architecture
+### 1. Resume Parsing & Analysis (CORE)
+- Basic text extraction from PDF/TXT files
+- Automated skill extraction
+- Contact information parsing
+
+### 2. Job Description Processing (CORE)
+- Keyword/skill extraction from job description
+- Simple requirement identification
+
+### 3. Matching & Scoring Engine (CORE)
+- Keyword-based skill matching
+- Simple ATS compatibility score (0-100)
+- Match percentage calculation
+
+### 4. User Interface (CORE)
+- Single-page resume upload
+- Job description input form
+- Results display with score breakdown
+- Match/mismatch skills visualization
+
+---
+
+## Simplified Technical Architecture
+
 ```
-├── API Layer
-│   ├── Resume Management APIs
-│   ├── Job Description APIs
-│   ├── Matching Engine APIs
-│   ├── Scoring & Analytics APIs
-│   └── Authentication & Authorization
-├── Core Processing Layer
-│   ├── Resume Parser
+BACKEND (Python/Flask)
+
+├── API Endpoints
+│   ├── POST /upload-resume
+│   ├── POST /evaluate
+│   └── GET /results/:id
+├── Core Processing
+│   ├── Resume Parser (PyPDF2/python-docx)
 │   ├── Job Description Processor
-│   ├── NLP Processing Engine
-│   ├── Matching Algorithm
 │   └── Scoring Engine
-├── Data Layer
-│   ├── Resume Database
-│   ├── Job Descriptions Store
-│   ├── Skills Ontology
-│   ├── Evaluation Results
-│   └── User Management
-└── Integration Layer
-    ├── File Upload Handler
-    ├── ATS System Connectors
-    ├── Email Notifications
-    └── Export Utilities
-```
+└── In-Memory Data Store (JSON/SQLite)
 
-### Frontend Architecture
-```
-├── User Authentication Module
-├── Dashboard
-│   ├── Overview Analytics
-│   ├── Pipeline Management
-│   └── Quick Actions
-├── Resume Upload Module
-├── Job Description Management Module
-├── Evaluation Results Module
-│   ├── Detailed Score View
-│   ├── Candidate Comparison
-│   ├── Report Generation
-│   └── Export Options
-└── User Settings & Administration
+FRONTEND (HTML/CSS/JavaScript)
+
+├── Upload Form
+├── Results Display
+└── Score Visualization
 ```
 
 ---
 
-## Core Components & Modules
+## Technology Stack (Hackathon)
 
-### 1. Resume Parsing Module
-- **Responsibility:** Extract structured data from resumes
-- **Functions:**
-  - File format conversion
-  - Text extraction and cleaning
-  - Section identification
-  - Entity extraction (names, emails, phone numbers)
-  - Work experience parsing
-  - Education extraction
-  - Skills identification
+### Backend (Pick One)
+**Python + Flask** (Recommended for hackathon)
+  - PyPDF2 / python-docx for file processing
+  - NLTK for basic NLP
+  - SQLite for data storage
+  - Flask-CORS for API
 
-### 2. Job Description Processor Module
-- **Responsibility:** Process and extract requirements from job descriptions
-- **Functions:**
-  - Requirement identification
-  - Skills extraction
-  - Experience level determination
-  - Seniority mapping
-  - Responsibility identification
-  - Benefit/perk extraction
-
-### 3. NLP & Machine Learning Engine
-- **Responsibility:** Semantic understanding and intelligent matching
-- **Functions:**
-  - Text preprocessing and tokenization
-  - Word embeddings (Word2Vec, GloVe, or BERT)
-  - Semantic similarity calculations
-  - Skill normalization
-  - Context understanding
-  - Pattern recognition
-
-### 4. Matching Algorithm Module
-- **Responsibility:** Compare candidate profiles with job requirements
-- **Functions:**
-  - Skill matching
-  - Experience level comparison
-  - Duration requirement validation
-  - Qualification matching
-  - Soft skill assessment
-
-### 5. Scoring Engine Module
-- **Responsibility:** Calculate ATS compatibility and fit scores
-- **Functions:**
-  - Individual component scoring
-  - Weighted score aggregation
-  - Threshold-based decision making
-  - Score explanation generation
-  - Performance benchmarking
-
-### 6. Database Module
-- **Responsibility:** Persistent data storage
-- **Functions:**
-  - Resume storage and retrieval
-  - Job description management
-  - User management
-  - Evaluation history tracking
-  - Analytics data collection
-
-### 7. API Gateway Module
-- **Responsibility:** Handle all client requests
-- **Functions:**
-  - Request routing
-  - Authentication/Authorization
-  - Rate limiting
-  - Input validation
-  - Response formatting
-
-### 8. Reporting & Analytics Module
-- **Responsibility:** Generate insights and reports
-- **Functions:**
-  - Report generation
-  - Statistical analysis
-  - Visualization data preparation
-  - Export functionality
-  - Performance metrics tracking
-
----
-
-## Technology Stack
-
-### Backend
-- **Language:** Python / Node.js / Java
-- **Framework:** FastAPI / Django / Express.js / Spring Boot
-- **NLP Library:** spaCy, NLTK, Hugging Face Transformers, BERT
-- **ML/AI:** scikit-learn, TensorFlow, PyTorch
-- **Database:** PostgreSQL / MongoDB
-- **File Processing:** PyPDF2, python-docx
-- **Caching:** Redis
-- **Message Queue:** Celery / RabbitMQ (for async tasks)
+**Node.js + Express** (Alternative)
+  - pdfparse / node-docx
+  - Natural.js for NLP
+  - SQLite3 or JSON file storage
 
 ### Frontend
-- **Framework:** React / Vue.js / Angular
-- **UI Library:** Material-UI / Bootstrap / Ant Design
-- **Charts/Analytics:** Chart.js / D3.js / ECharts
-- **File Upload:** React Dropzone / Multer
-- **State Management:** Redux / Vuex / Pinia
+**HTML5 + CSS3 + Vanilla JavaScript**
+  - Bootstrap or Tailwind CSS for styling
+  - Fetch API for backend communication
+  - Chart.js for score visualization
 
-### Infrastructure & DevOps
-- **Cloud Platform:** AWS / Google Cloud / Azure
-- **Containerization:** Docker
-- **Orchestration:** Kubernetes
-- **CI/CD:** GitHub Actions / Jenkins / GitLab CI
-- **Monitoring:** ELK Stack / Prometheus / Grafana
+**OR**
 
----
+**React** (if team familiar)
+  - Simple create-react-app
+  - Axios for API calls
 
-## Project Phases
-
-### Phase 1: Foundation & Planning (Weeks 1-2)
-- [ ] Project kickoff and team alignment
-- [ ] Detailed requirements documentation
-- [ ] Technology stack finalization
-- [ ] Architecture design and review
-- [ ] Development environment setup
-
-### Phase 2: Core Backend Development (Weeks 3-6)
-- [ ] Resume parser implementation
-- [ ] Job description processor development
-- [ ] NLP engine integration
-- [ ] Database schema design and implementation
-- [ ] API endpoint development
-- [ ] Unit testing
-
-### Phase 3: ML/AI Engine Development (Weeks 7-10)
-- [ ] Matching algorithm development
-- [ ] Scoring engine implementation
-- [ ] Model training and evaluation
-- [ ] Performance optimization
-- [ ] Algorithm testing and validation
-
-### Phase 4: Frontend Development (Weeks 8-11)
-- [ ] UI/UX design finalization
-- [ ] Dashboard implementation
-- [ ] Resume upload interface
-- [ ] Results visualization
-- [ ] Responsive design implementation
-
-### Phase 5: Integration & Testing (Weeks 12-13)
-- [ ] Frontend-backend integration
-- [ ] End-to-end testing
-- [ ] Performance testing
-- [ ] Security testing
-- [ ] User acceptance testing (UAT)
-
-### Phase 6: Deployment & Launch (Weeks 14-15)
-- [ ] Production environment setup
-- [ ] Data migration (if applicable)
-- [ ] User documentation
-- [ ] Training materials
-- [ ] Production deployment
-- [ ] Post-launch monitoring
+### Data Storage
+- **SQLite** (file-based, no setup needed)
+- **JSON files** (simplest option)
 
 ---
 
-## Key Deliverables
+## 2-Day Hackathon Schedule
+
+### DAY 1 (8 hours)
+
+**Morning - Planning & Setup (3 hours: 9 AM - 12 PM)**
+- [ ] Team formation and role assignment (15 min)
+- [ ] Requirements finalization (30 min)
+- [ ] Technology stack decision (15 min)
+- [ ] Environment setup and dependencies (45 min)
+- [ ] Architecture & API design (45 min)
+- [ ] Break (15 min)
+
+**Afternoon - Backend Development (5 hours: 1 PM - 6 PM)**
+- [ ] Resume parser implementation (90 min)
+- [ ] Job description processor (60 min)
+- [ ] API endpoints setup (45 min)
+- [ ] Basic scoring logic (45 min)
+- [ ] Testing and debugging (15 min)
+
+### DAY 2 (8 hours)
+
+**Morning - Integration & Frontend (4 hours: 9 AM - 1 PM)**
+- [ ] Frontend setup and structure (60 min)
+- [ ] Resume upload form (45 min)
+- [ ] Job description input form (30 min)
+- [ ] Frontend-backend integration (45 min)
+- [ ] Bug fixes and testing (20 min)
+
+**Afternoon - Polish & Demo Prep (4 hours: 2 PM - 6 PM)**
+- [ ] Results display UI (45 min)
+- [ ] Score visualization (45 min)
+- [ ] End-to-end testing (45 min)
+- [ ] Sample data preparation (15 min)
+- [ ] Demo rehearsal and documentation (30 min)
+- [ ] Final testing and optimizations (20 min)
+
+---
+
+## Core Modules (Hackathon Version)
+
+### 1. Resume Parser
+- Extract text from PDF/TXT
+- Identify skills section
+- Extract candidate name, email
+
+### 2. Job Description Processor
+- Extract text
+- Parse required skills
+- Parse job title and level
+
+### 3. Matching Engine
+- Compare skills (case-insensitive keyword matching)
+- Calculate match percentage
+- Identify matched and missing skills
+
+### 4. Scoring Engine
+- Skill match score (0-100)
+- Experience relevance score
+- Overall ATS compatibility score
+- Generate match summary
+
+---
+
+## Hackathon Deliverables
+
+### Working Software
+- [ ] Backend API (Flask/Express)
+- [ ] Frontend web application (HTML/React)
+- [ ] Resume upload and processing
+- [ ] Job description input
+- [ ] Scoring and results display
 
 ### Documentation
-- [ ] Project requirements document
-- [ ] System architecture document
-- [ ] API documentation
-- [ ] Database schema documentation
-- [ ] User guide and manual
-- [ ] Technical documentation
+- [ ] README with setup instructions
+- [ ] API endpoint documentation
+- [ ] How to use guide
+- [ ] Code comments
 
-### Software
-- [ ] Backend API with all features
-- [ ] Frontend web application
-- [ ] Database implementation
-- [ ] ML models and algorithms
-- [ ] Integration connectors
+### Demo Materials
+- [ ] Sample resumes and job descriptions
+- [ ] Presentation slides
+- [ ] Video demo (optional)
 
-### Testing & QA
-- [ ] Test cases and test reports
-- [ ] Code coverage report
-- [ ] Performance benchmarks
-- [ ] Security audit report
-
-### Deployment
-- [ ] Docker images
-- [ ] Deployment scripts
-- [ ] CI/CD pipeline
-- [ ] Monitoring and alerting setup
+### Code Repository
+- [ ] GitHub repository with clean code
+- [ ] Well-organized folder structure
+- [ ] .gitignore and requirements.txt/.package.json
 
 ---
 
-## Data Models
+## Simplified Data Models
 
-### Resume Model
-```
+### Resume Data
+```json
 {
-  "id": string,
-  "fileName": string,
-  "uploadDate": timestamp,
-  "candidateName": string,
-  "email": string,
-  "phone": string,
-  "location": string,
-  "summary": string,
-  "workExperience": [Experience],
-  "education": [Education],
-  "skills": [string],
-  "certifications": [string],
-  "rawContent": string
+  "id": "unique_id",
+  "fileName": "resume.pdf",
+  "candidateName": "John Doe",
+  "email": "john@example.com",
+  "extractedSkills": ["Python", "JavaScript", "React"],
+  "rawText": "..."
 }
 ```
 
-### Job Description Model
-```
+### Job Description Data
+```json
 {
-  "id": string,
-  "jobTitle": string,
-  "company": string,
-  "department": string,
-  "description": string,
-  "requiredSkills": [string],
-  "preferredSkills": [string],
-  "requiredExperience": integer,
-  "educationLevel": string,
-  "salary": object,
-  "createdDate": timestamp,
-  "modifiedDate": timestamp
+  "id": "job_id",
+  "jobTitle": "Senior Developer",
+  "description": "...",
+  "requiredSkills": ["Python", "PostgreSQL", "React"]
 }
 ```
 
-### Evaluation Result Model
-```
+### Evaluation Result
+```json
 {
-  "id": string,
-  "resumeId": string,
-  "jobDescriptionId": string,
-  "overallScore": float (0-100),
-  "skillMatchScore": float,
-  "experienceScore": float,
-  "educationScore": float,
-  "atsScore": float,
-  "matchedSkills": [string],
-  "missingSkills": [string],
-  "strengths": [string],
-  "weaknesses": [string],
-  "recommendation": string,
-  "evaluationDate": timestamp
+  "id": "result_id",
+  "resumeId": "resume_id",
+  "jobId": "job_id",
+  "overallScore": 78,
+  "skillMatchPercentage": 75,
+  "matchedSkills": ["Python", "React"],
+  "missingSkills": ["PostgreSQL"],
+  "recommendation": "GOOD_FIT"
 }
 ```
 
 ---
 
-## Success Metrics
+## Hackathon Success Criteria
 
-### Performance Metrics
-- Resume processing time: < 2 seconds per resume
-- Matching algorithm accuracy: > 85%
-- System uptime: > 99.5%
-- API response time: < 500ms
+### Must Have (MVP)
+- ✅ Functional resume upload and parsing
+- ✅ Job description input
+- ✅ Working matching algorithm
+- ✅ Score calculation (0-100)
+- ✅ Results display with matched/missing skills
+- ✅ Live demo ready
 
-### Business Metrics
-- Reduction in screening time by 70%
-- Improvement in hiring consistency by 60%
-- False positive rate: < 10%
-- User adoption rate: > 80%
+### Nice to Have
+- 📊 Visual score charts
+- 📝 PDF report generation
+- ⚡ Performance optimization
+- 🎨 Polished UI design
 
-### Quality Metrics
-- Code coverage: > 80%
-- Bug detection rate: > 90%
-- Zero critical vulnerabilities in production
-
----
-
-## Risk Management
-
-### Potential Risks
-1. **Data Quality Issues**
-   - Mitigation: Implement robust validation and error handling
-
-2. **Algorithm Accuracy**
-   - Mitigation: Continuous model training and evaluation
-
-3. **Scalability Challenges**
-   - Mitigation: Implement caching and asynchronous processing
-
-4. **Data Privacy & Security**
-   - Mitigation: Implement encryption, access controls, and compliance measures
-
-5. **Integration Complexity**
-   - Mitigation: Use standard APIs and protocols
+### Hackathon Goals
+- Resume processing time: < 5 seconds
+- Match accuracy demonstration: ✓ Works correctly
+- Clean, maintainable code
+- Good presentation and demo
 
 ---
 
-## Team Requirements
+## Hackathon Challenges & Solutions
 
-### Roles
-- **Project Manager** - Overall project coordination
-- **Backend Engineers (2-3)** - API and core logic development
-- **ML/NLP Engineers (2)** - Algorithm development and optimization
-- **Frontend Engineers (2)** - UI/UX implementation
-- **DevOps Engineer** - Infrastructure and deployment
-- **QA Engineer** - Testing and quality assurance
-- **Database Administrator** - Data management and optimization
+### Common Issues & Fixes
+
+1. **Resume parsing fails on certain PDFs**
+   - Solution: Use simple text extraction, test with various formats early
+
+2. **Skill matching too strict/lenient**
+   - Solution: Use case-insensitive matching, fuzzy string matching (fuzzywuzzy)
+
+3. **Frontend-backend integration issues**
+   - Solution: Start simple with JSON endpoints, use Postman to test
+
+4. **Time running out**
+   - Priority: Get basic version working, then add features
+   - Skip: Database persistence (use JSON files), authentication, advanced UI
+
+5. **Dependencies/setup issues**
+   - Solution: Use simple libraries, pre-install everything, have backup tools
 
 ---
 
-## Budget Estimate
+## Team Structure (Hackathon)
 
-- **Development:** 4-6 months
-- **Team Size:** 8-10 people
-- **Infrastructure:** Cloud-based (AWS/GCP/Azure)
-- **Estimated Cost:** $150K - $300K (depending on scope and timeline)
+### Optimal Team: 3-4 People
+- **Backend Developer (1-2)** - Parse, match, score, API
+- **Frontend Developer (1-2)** - UI, forms, results display
+- **Team Lead/Coordinator** - Planning, demos, documentation
+
+### Flexible Assignments
+- Single person: Can handle both backend and simple frontend
+- 4 people: One dedicated to testing and documentation
 
 ---
 
-## Next Steps
+## Quick Start Guide
 
-1. Finalize project scope and requirements
-2. Establish development environment
-3. Create detailed task breakdowns
-4. Begin Phase 1 activities
-5. Schedule regular review meetings
+### Before the Hackathon
+1. Install Python/Node.js
+2. Set up Git repository
+3. Prepare sample resumes and job descriptions
+4. Test file upload libraries
+5. Decide on simple database (SQLite or JSON)
+
+### First 30 Minutes
+1. Clone/setup repo structure
+2. Install dependencies (Flask, PyPDF2, etc.)
+3. Create basic API skeleton
+4. Create simple HTML form
+5. Test basic file upload
+
+### Development Priority
+1. **Hour 1-3:** Resume parser + Job processor (backend)
+2. **Hour 4-5:** Matching algorithm + Scoring
+3. **Hour 6-8:** API endpoints + Frontend form
+4. **Hour 9-14:** Frontend results display + Integration
+5. **Hour 15-16:** Testing + Polish + Demo prep
+
+---
+
+## Final Checklist
+- [ ] Code pushed to GitHub
+- [ ] README with setup instructions
+- [ ] At least 1 working demo example
+- [ ] Presentation ready
+- [ ] Team can explain every feature
+
+---
+
+## Project Repository Structure
+
+```
+CandiSight-Hackathon/
+├── backend/
+│   ├── app.py (or main.js for Node)
+│   ├── resume_parser.py
+│   ├── job_processor.py
+│   ├── scoring_engine.py
+│   ├── requirements.txt
+│   └── sample_data/
+├── frontend/
+│   ├── index.html
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── script.js
+│   └── assets/
+├── data/
+│   ├── resumes/
+│   └── jobs/
+├── .gitignore
+└── README.md
+```
+
+---
+
+## Sample API Endpoints
+
+### 1. Upload Resume
+```
+POST /api/upload-resume
+Content-Type: multipart/form-data
+
+Response: 
+{
+  "success": true,
+  "resumeId": "resume_123",
+  "candidateName": "John Doe",
+  "skills": ["Python", "JavaScript"]
+}
+```
+
+### 2. Create Job Description
+```
+POST /api/create-job
+Content-Type: application/json
+
+{
+  "jobTitle": "Senior Developer",
+  "description": "...",
+  "requiredSkills": ["Python", "React"]
+}
+
+Response:
+{
+  "success": true,
+  "jobId": "job_456"
+}
+```
+
+### 3. Evaluate Candidate
+```
+POST /api/evaluate
+Content-Type: application/json
+
+{
+  "resumeId": "resume_123",
+  "jobId": "job_456"
+}
+
+Response:
+{
+  "overallScore": 78,
+  "skillMatchPercentage": 75,
+  "matchedSkills": ["Python"],
+  "missingSkills": ["React"],
+  "recommendation": "GOOD_FIT"
+}
+```
+
+---
+
+## Tips for Hackathon Success
+
+✨ **Do's:**
+- Start with core features (parsing, matching, scoring)
+- Use existing libraries (don't reinvent the wheel)
+- Test early and often
+- Keep UI simple but functional
+- Document as you code
+- Save frequently to Git
+
+❌ **Don'ts:**
+- Over-engineer the solution
+- Try to perfect UI design
+- Implement authentication
+- Build for scale (one-person use is fine)
+- Spend time on deployment
+- Ignore error handling
+
+---
+
+**Good luck with your hackathon! 🚀**
