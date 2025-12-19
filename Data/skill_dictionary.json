@@ -1,0 +1,90 @@
+{
+  "programming": [
+    "python",
+    "java",
+    "javascript",
+    "c++",
+    "csharp",
+    "ruby",
+    "go",
+    "rust",
+    "php",
+    "typescript"
+  ],
+  "web_frontend": [
+    "react",
+    "angular",
+    "vue",
+    "html",
+    "css",
+    "webpack",
+    "babel",
+    "responsive design",
+    "jsx",
+    "css3"
+  ],
+  "web_backend": [
+    "nodejs",
+    "django",
+    "flask",
+    "fastapi",
+    "express",
+    "spring boot",
+    "asp.net",
+    "laravel"
+  ],
+  "databases": [
+    "sql",
+    "mysql",
+    "postgresql",
+    "mongodb",
+    "redis",
+    "elasticsearch",
+    "cassandra",
+    "dynamodb",
+    "oracle"
+  ],
+  "cloud_devops": [
+    "aws",
+    "azure",
+    "gcp",
+    "docker",
+    "kubernetes",
+    "jenkins",
+    "terraform",
+    "ansible",
+    "ci cd"
+  ],
+  "ml_ai": [
+    "machine learning",
+    "deep learning",
+    "tensorflow",
+    "pytorch",
+    "scikit-learn",
+    "neural networks",
+    "nlp",
+    "computer vision",
+    "keras"
+  ],
+  "data": [
+    "data analysis",
+    "pandas",
+    "numpy",
+    "analytics",
+    "excel",
+    "tableau",
+    "power bi",
+    "sql",
+    "big data"
+  ],
+  "other": [
+    "git",
+    "agile",
+    "scrum",
+    "communication",
+    "leadership",
+    "problem solving",
+    "teamwork",
+    "project management"
+  ]
+}
